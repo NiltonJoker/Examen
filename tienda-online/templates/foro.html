@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bananas Store</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/normalize.css')}}">
+    <link rel="shortcut icon" href="../static/img/Yammi_banana_Icon_64.ico">
+    
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <style>
+        html{
+    font-size: 62.5%; /**Reset para REMS- 62.5% = 10px de 16px**/
+    }
+    /** 1 rem == 10px**/
+    body{
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+    }
+    /**Globales**/
+    .contenedor{
+    max-width: 120rem;
+    margin: 0 auto 0 auto;
+    }
+    h1{
+    font-size: 3.8rem;
+    }
+    h2{
+    font-size: 3.4rem;
+    }
+    h3{
+    font-size: 3rem;
+    }
+    h4{
+    font-size: 2.6rem;
+    }
+    img{
+    max-width: 100%;
+    }
+    /**Utilidades**/
+    .seccion{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    }
+    .center{
+    text-align: center;
+    }
+    .fw-300{
+    font-weight: 300;
+    }
+    .d-block{
+    display: block!important;
+    }
+    .contenido-centrado{
+    max-width: 800px;
+    }
+    /**Botones**/
+    .boton{
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.8rem;
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    }
+    .boton:hover{
+    cursor:pointer;
+    }
+    .boton-amarillo{
+    background-color: #e08709;
+    }
+    .boton-verde{
+    background-color: #71b100;
+    }
+    /** Header **/
+    .site-header{
+    background-color: #333333;
+    padding: 1rem 0 3rem 0;
+    }
+    .site-header.inicio{
+    background-image: url(../static/img/aea.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    min-height: 60rem;
+    }
+    .contenido-header{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .contenido-header h1{
+    color: white;
+    padding-bottom: 4rem;
+    max-width: 60rem;
+    line-height: 2;
+    }
+    .barra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    padding-top: 3rem;
+    
+    }
+    
+    /**Navegacion**/
+    
+    .navegacion a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.8rem;
+    margin-right: 2rem;
+    }
+    .navegacion a:hover{
+    color: #71B100;
+    }
+    .navegacion a:last-of-type{
+    margin: 0;
+    }
+    
+    /**Iconos**/
+    .iconos-nosotros{
+    display: flex;
+    }
+    .icono{
+    flex-basis: calc(33.3% - 1rem);
+    text-align: center;
+    }
+    .icono h3{
+    text-transform: uppercase;
+    }
+    
+    /**Anuncios**/
+    .contenedor-anuncios{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
+    .anuncio {
+    flex: 0 0 calc(33.3% - 1rem);
+    border: 1px solid #B5B5B5;
+    background: #F5F5F5;
+    margin-bottom: 2rem;
+    
+    }
+    .contenido-anuncio{
+    padding: 2rem;
+    }
+    .contenido-anuncio h3,.contenido-anuncio p{
+    margin:0;
+    }
+    .precio{
+    color: #71b100;
+    font-weight: 700;
+    }
+    .ver-todas{
+    display: flex;
+    justify-content: flex-end;
+    }
+    .iconos-caracteristicas{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 50rem;
+    flex: 1;
+    }
+    .iconos-caracteristicas li{
+    flex: 1;
+    display: flex;
+    }
+    .iconos-caracteristicas li img{
+     margin-right: 2rem;
+    }
+    /**Contacto Home**/
+    .imagen-contacto{
+    background-image: url(../static/img/encuentra.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    }
+    .contenido-contacto{
+    flex: 1;
+    color: #ffffff;
+    }
+    .contenido-contacto p{
+    font-size: 1.8rem;
+    
+    }
+    /**Seccion inferios**/
+    .seccion-inferior{
+    display: flex;
+    justify-content: space-between;
+    }
+    .seccion-inferior .blog {
+    flex-basis: 60%;
+    }
+    .seccion-inferior .testimoniales{
+    flex-basis: calc(40% - 2rem);
+    }
+    
+    .entrada-blog{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    }
+    .entrada-blog:last-of-type{
+    margin-bottom: 0;
+    }
+    .entrada-blog .imagen{
+    flex-basis: 40%;
+    }
+    .entrada-blog .texto-entrada{
+    flex-basis: calc(60% - 3rem);
+    }
+    .texto-entrada h4{
+    margin: 0;
+    line-height: 1.5;
+    }
+    .texto-entrada a{
+    color: black;
+    text-decoration: none;
+    }
+    .texto-entrada h4::after{
+    content: '';
+    display: block;
+    width: 15rem;
+    height: 0.5rem;
+    background-color: #71B100;
+    
+    margin-top: 1rem;
+    }
+    .texto-entrada span{
+    color:  #e08709;
+    }
+    /**testimoniales**/
+    
+    .testimonial{
+    background-color: #71B100;
+    font-size: 2.4rem;
+    padding: 2rem;
+    color: #ffffff;
+    border-radius: 2rem;
+    }
+    .testimonial p{
+    text-align: right;
+    }
+    .testimonial blockquote::before{
+    content: '';
+    background-image: url(../static/img/comilla.svg);
+    width: 4rem;
+    height: 4rem;
+    position: absolute;
+    left: -2rem;
+    
+    }
+    .testimonial blockquote{
+    position: relative;
+    padding-left: 5rem;
+    font-weight: 300;
+    }
+    /**Footer**/
+    .site-footer{
+    background-color: #333333;
+    margin: 0;
+    }
+    .contenedor-footer{
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    }
+    .copy{
+    margin: 0;
+    color: #ffffff;
+    }
+    
+    /**Internas**/
+    /**Nosotros**/
+    
+    .contenido-nosotros{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+    }
+    .texto-nosotros blockquote{
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 0;
+    padding: 3rem;
+    }
+    /**Anuncio**/
+    .resumen-propiedad{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    /** Contacto **/
+    form p{
+    font-size: 1.5rem;
+    margin: 2rem 0 0 0;
+    }
+    legend{
+    font-size: 2.4rem;
+    color: #414141;
+    }
+    label{
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    }
+    input:not([type="submit"]),
+    textarea,
+    select{
+    padding: 1rem;
+    display: block;
+    width: 97%;
+    background-color: #e1e1e1;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 1rem;
+    resize:none;
+    }
+    input[type="radio"]{
+    width: auto;
+    margin: 0;
+    }
+    select{
+    -webkit-appearance: none;
+    appearance: none;
+    }
+    textarea{
+    height: 20rem;
+    }
+    .forma-contacto{
+    max-width: 30rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .busqueda{
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    }
+    .busqueda input{
+    
+    margin-right: 2rem;
+    }
+    .busqueda a{
+    border-radius: 1rem;
+    }
+    
+    .banana{
+    text-decoration: none;
+    font-size: 4rem;
+    background: -webkit-linear-gradient(left, yellow,orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    align-items:baseline;
+    }
+    .banana-banano{
+    width: 8rem;
+    height: 8rem;
+    
+    }
+    .container{
+        height: 896px;
+        
+    }
+    </style>
+    <style>
+        /*
+    Image credits:
+    uifaces.com (http://uifaces.com/authorized)
+*/
+
+#login { display: none; }
+.login,
+.logout { 
+    position: absolute; 
+    top: -3px;
+    right: 0;
+}
+.page-header { position: relative; }
+.reviews {
+    color: #555;    
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
+.notes {
+    color: #999;
+    font-size: 12px;
+}
+.media .media-object { max-width: 120px; }
+.media-body { position: relative; }
+.media-date { 
+    position: absolute; 
+    right: 25px;
+    top: 25px;
+}
+.media-date li { padding: 0; }
+.media-date li:first-child:before { content: ''; }
+.media-date li:before { 
+    content: '.'; 
+    margin-left: -2px; 
+    margin-right: 2px;
+}
+.media-comment { margin-bottom: 20px; }
+.media-replied { margin: 0 0 20px 50px; }
+.media-replied .media-heading { padding-left: 6px; }
+
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
+}
+.btn-circle span { padding-right: 6px; }
+.embed-responsive { margin-bottom: 20px; }
+.tab-content {
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.custom-input-file {
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+    height: 120px;
+        
+    background-size: 120px;
+    border-radius: 120px;
+}
+input[type="file"]{
+    z-index: 999;
+    line-height: 0;
+    font-size: 0;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity = 0);-ms-filter: "alpha(opacity=0)";
+    margin: 0;
+    padding:0;
+    left:0;
+}
+.uploadPhoto {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    display: none;
+    width: 50%;
+    height: 50%;
+    color: #fff;    
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;    
+    background-color: rgba(0,0,0,.3);
+    border-radius: 50px;
+    cursor: pointer;
+}
+.custom-input-file:hover .uploadPhoto { display: block; }
+.dropdown-menu{
+    background-color: #646464CC!important;
+   
+    
+}
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="contenedor contenido-header">
+            <div class="barra">
+                <a class="banana" href="/store" >
+                    <img class="banana-banano" src="../static/img/logo.png" alt="Logo tipo de bienes raices">
+                    Bananas Store
+                </a>
+                
+                <nav class="navegacion">
+                    <a href="/nosotros">Nosotros</a>
+                    <a href="/anuncios">Anuncios</a>
+                    <a href="/foro">Foro</a>
+                    <a class="dropdown-toggle"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/anuncios">
+                      Mi cuenta
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <a class="dropdown-item" href="/datos">{{correos}}</a>
+                      <a class="dropdown-item" href="/history">Mis Pedidos</a>
+                      <a class="dropdown-item" href="/" >Cerrar Sesion</a>
+                  </div>
+                    
+                    <a href="/cart"><img class="imagen-carro" src="/static/img/carrito1.png" alt=""></a>
+                </nav>  
+            </div>
+            
+        </div>  <!--Contenedor-->
+    </header>
+    <div class="container">
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1" id="logout">
+                  <div class="page-header">
+                      <h3 class="reviews">Deja tu comentario</h3>
+
+                  </div>
+                  <div class="comment-tabs">
+                      <ul class="nav nav-tabs" role="tablist">
+                          <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comentarios</h4></a></li>
+                          <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comentar</h4></a></li>
+                          <li><a href="#account-settings" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Configuracion de Avatar</h4></a></li>
+                      </ul>  
+                               
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="comments-logout">     {% for tema in temas %}          
+                              <ul class="media-list">
+                                <li class="media">
+                                  <a class="pull-left" href="#">
+                                    {% if tema.6 is not none and tema.6 != "" %}
+                                      <img class="media-object img-circle" src="{{tema.6}}" alt="profile">
+                                    {% else %}
+                                      <img class="media-object img-circle" src="../static/img/user.png" alt="profile">
+                                    {% endif %}
+                                  </a>
+                                  <div class="media-body">
+                                    <div class="well well-lg">
+                                        <h4 class="media-heading text-uppercase reviews">{{tema.5}} </h4>
+                                        <ul class="media-date text-uppercase reviews list-inline">
+                                          <li class="dd">{{tema.3}}</li>
+                                        </ul>
+                                        <p class="media-comment">
+                                          {{tema.1}}
+                                        </p>
+                                        {% if tema.2 is not none and tema.2 != "" %}
+                                          <div class="embed-responsive embed-responsive-16by9">
+                                              <iframe width="560" height="315" src="{{tema.2}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                          </div>
+                                        {% endif %}
+                                        <button type="button" class="btn btn-info btn-circle text-uppercase" data-toggle="modal" data-target=".hola-{{tema.0}}" >Responder</button>
+
+                                        <div class="modal fade bd-example-modal-lg hola-{{tema.0}}" tabindex="-1" role="dialog">
+                                          <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="exampleModalLabel">Nuevo Comentario</h4>
+                                                </div>
+                                                <form method="POST" action="/comentar">
+                                                  <input type="hidden" name="tema" value={{tema.0}}>
+                                                  <div class="modal-body">
+                                                      <div class="form-group">
+                                                          <label for="email" class="col-sm-2 control-label">Comentario</label>
+                                                          <div class="col-sm-10">
+                                                            <textarea class="form-control" name="addComment" id="addComment" rows="4"></textarea>
+                                                          </div>
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <label for="uploadMedia" class="col-sm-2 control-label">Video</label>
+                                                          <div class="col-sm-10">                    
+                                                              <div class="input-group">
+                                                                <div class="input-group-addon">http://</div>
+                                                                <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                                                      <input type="submit" class="btn btn-primary" value="Enviar comentario">
+                                                  </div>
+                                                </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- <a class="btn btn-info btn-circle text-uppercase"  id="reply" onclick="myfunction()" ><span class="glyphicon glyphicon-share-alt" ></span>Responder</a> -->
+                                       
+                                        <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#a{{tema.0}}"><span class="glyphicon glyphicon-comment"></span>Comentarios</a>
+                                    </div>              
+                                  </div>
+                                  <div class="collapse " id="a{{tema.0}}">
+                                      <ul class="media-list">
+                                      
+                                      {% for comentario in comentarios %}
+                                          {% if comentario.5 == tema.0 %}
+                                            <li class="media media-replied">
+                                                <a class="pull-left" href="#">
+                                                  {% if comentario.7 is none or comentario.7 == "" %}
+                                                      <img class="media-object img-circle" src="../static/img/user.png" alt="profile">
+                                                  {% else %}
+                                                    
+                                                    <img class="media-object img-circle" src="{{comentario.7}}" alt="profile">
+                                                  {% endif %}
+                                                </a>
+                                                <div class="media-body">
+                                                  <div class="well well-lg">
+                                                      <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span>{{comentario.6}}</h4>
+                                                      <ul class="media-date text-uppercase reviews list-inline">
+                                                        <li class="dd">{{comentario.3}}</li>
+                                                      </ul>
+                                                      <p class="media-comment">
+                                                        {{comentario.1}}
+                                                      </p>
+                                                      {% if comentario.2 is not none and comentario.2 != "" %}
+                                                      <div class="embed-responsive embed-responsive-16by9">
+                                                          <iframe width="560" height="315" src="{{comentario.2}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                      </div>
+                                                      {% endif %}
+                                                  </div>              
+                                                </div>
+                                            </li>
+                                          {% endif %}
+                                      {% endfor %}    
+                                      </ul>  
+                                  </div>
+                                </li>         
+                            {% endfor %}
+                              </ul> 
+                          </div>
+                          <div class="tab-pane" id="add-comment">
+                              <form action="/tema" method="post" class="form-horizontal" id="commentForm" role="form"> 
+                                  <div class="form-group">
+                                      <label for="email" class="col-sm-2 control-label">Comentario</label>
+                                      <div class="col-sm-10">
+                                        <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="uploadMedia" class="col-sm-2 control-label">Subir video</label>
+                                      <div class="col-sm-10">                    
+                                          <div class="input-group">
+                                            <div class="input-group-addon">http://</div>
+                                            <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <div class="col-sm-offset-2 col-sm-10">                    
+                                          <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span>Enviar Comentario</button>
+                                      </div>
+                                  </div>            
+                              </form>
+                          </div>
+
+                          <!-- AVATAR O SETTING CUENTA -->
+                          <div class="tab-pane" id="account-settings">
+                              <form action="/avatar" method="post" class="form-horizontal" id="accountSetForm" role="form" enctype="multipart/form-data">
+                                  <div class="form-group">
+                                      <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+                                      <div class="col-sm-10">                               {% if imagen is not none and imagen != "" %}
+                                            <div class="custom-input-file" style="background: #eee url('{{imagen}}'); background-size: 120px;
+                                            border-radius: 120px;" id="list12">
+                                          {% else %}
+                                            <div class="custom-input-file" style="background: #eee url('../static/img/user.png'); background-size: 120px;
+                                            border-radius: 120px;" id="list12">
+                                          {% endif %} 
+                                              <label class="uploadPhoto">
+                                                  Editar
+                                                  <input type="file" class="change-avatar" name="archivo" id="files">
+                                               
+                                              </label>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="name" class="col-sm-2 control-label">Nombre</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="{{nombre}}" disabled>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="nickName" class="col-sm-2 control-label">Direccion</label>
+                                      
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nickName" id="nickName" placeholder="{{direc}}" disabled>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="email" class="col-sm-2 control-label">Email</label>
+                                      <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="{{correos}}" disabled>
+                                      </div>
+                                  </div>  
+                                  
+                                  <div class="form-group">
+                                      <div class="col-sm-offset-2 col-sm-10">                    
+                                          <input type="submit" class="btn btn-primary btn-circle text-uppercase" value="Guardar Cambios" id="submit">
+                                      </div>
+                                  </div>            
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            
+        
+          </div>
+  
+
+        
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script>
+    function archivo(evt) {
+        var files = evt.target.files; // FileList object
+   
+        // Obtenemos la imagen del campo "file".
+        
+        for (var i = 0, f; f = files[i]; i++) {
+          //Solo admitimos imágenes.
+          if (!f.type.match('image.*')) {
+              continue;
+          }
+   
+          var reader = new FileReader();
+   
+          reader.onload = (function(theFile) {
+              return function(e) {
+                // Insertamos la imagen
+               document.getElementById("list12").removeAttribute('style');
+               
+                var str1 = "background: #eee url('";
+                var str2 = "'); background-size: 120px;border-radius: 120px;"
+                var res = str1.concat(e.target.result, str2)
+                document.getElementById("list12").setAttribute('style',res);
+              };
+          })(f);
+   
+          reader.readAsDataURL(f);
+        }
+    }
+    
+    document.getElementById('files').addEventListener('change', archivo, false);
+</script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+

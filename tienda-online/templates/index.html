@@ -1,0 +1,52 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="shortcut icon" href="../static/img/Yammi_banana_Icon_64.ico">
+<!------ Include the above in your HEAD tag ---------->
+<title>Bananas Store</title>
+<body>
+	
+
+<div class="login-reg-panel">
+		<div class="login-info-box">
+			<h2>¿Tienes una cuenta?</h2>
+			<p>Ingresa aqui</p>
+			<label id="label-register" for="log-reg-show">Ingresar</label>
+			<input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
+		</div>
+							
+		<div class="register-info-box">
+			<h2>¿No tienes una cuenta?</h2>
+			<p>Registrate Gratis</p>
+			<label id="label-login" for="log-login-show">Registrate</label>
+			<input type="radio" name="active-log-panel" id="log-login-show">
+		</div>
+							
+		<div class="white-panel">
+			<form method="POST" action="/login">
+				<div class="login-show">
+					<h2>INGRESAR</h2>
+					<input type="text" name="email" placeholder="Email">
+					<input type="password" name="password" placeholder="Password">
+					<input type="submit" class="btn btn-primary btn-dark" value="Ingresar">
+					<br>
+					<a href="/admin_login">Acceder como Administrador</a>
+				</div>
+			</form>
+			<form method="POST" action="/add_user">
+				<div class="register-show">
+					<h2>REGISTRARSE</h2>
+					<input type="text" name="nombre" placeholder="Nombre">
+					<input type="text" name="mail" placeholder="Email">
+					<input type="password" name="pass" placeholder="Password">
+					<input type="password" name="cpass" placeholder="Confirm Password">
+					
+					<input type="submit" class="btn btn-primary btn-dark" value="Registrarse">
+					
+				</div>
+			</form>
+		</div>
+    </div>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>

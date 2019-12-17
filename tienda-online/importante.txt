@@ -1,0 +1,8 @@
+nombre de la base de datos : tienda_ropa
+----------------------------------------------------
+Necesario al instalar python agregar
+
+
+pip install flask flask-mysqldb
+
+----------------------------------------------------

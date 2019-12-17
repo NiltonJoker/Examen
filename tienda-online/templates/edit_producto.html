@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="card card-body">
+            <form action="/update/{{producto.0}}" method="POST" enctype="multipart/form-data">
+                <div class="card card-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="nombre" placeholder="Nombre del Producto" value="{{producto.1}}" required >
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="stock" placeholder="Stock" value="{{producto.2}}"  required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="precio" placeholder="Precio" value="{{producto.3}}" required >
+                    </div>
+                    <div class="form-group">
+                        
+                        <div class="col-md-8 offset-md-4">
+                            <div class="custom-input-file" style="background: #eee url('{{producto.4}}'); background-size: 120px;
+                            border-radius: 120px; padding-left:50px;" id="list12">
+                            
+                            <label class="uploadPhoto">
+                                Ingresar
+                                
+                                <input type="file" class="change-avatar" name="archivo" id="files"  >
+                            </label>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="form-group">
+                           <textarea class="form-control" name="descripcion" id="" cols="30" rows="3" placeholder="Descripcion" required >{{producto.5}}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-block" value="Confirmar Edicion">
+                           
+                    
+                    </div>
+                    <a href="/admin" class="btn btn-danger btn-block" role="button">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+
+{% endblock %}

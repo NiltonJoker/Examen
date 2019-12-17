@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/estilo_login.css')}}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+	<div class="loginbox">
+		<img src="http://www.vijayyadav.tk/images/avatar.png" class="avatar">
+		<h1>Administración</h1>
+		<form action="/validar_adm" method="POST">
+			<p>Usuario</p>
+			<input type="text" name="usuario" placeholder="Ingrese el nombre de usuario">
+			<p>Contraseña</p>
+			<input type="Password" name="password" placeholder="Ingrese la constraseña">
+			<input type="submit" name="" value="Ingresar">
+			<a href="/">Regresar a vista de cliente</a><br>
+		</form>
+	</div>
